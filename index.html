@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="./assets/play-station.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+NKo+Unjoined:wght@400;500&family=Roboto:wght@300&family=Sevillana&family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>    
+    <title>Piedra, Papel, Tijera</title>
+</head>
+<body>
+    <header>
+    </header>
+    <section>
+        <h1 class="h1">Rock, Paper, Scissors</h1>
+        <hr>
+        <button id="reload" class="Reload" onclick="location.reload()">Reload</button> 
+        <div><h2>Game Results</h2>
+            <div><p id="ganador-partida"></p></div>
+            <div class="Container">
+                <article class="card">
+                    <div class="ContainerResults">
+                        <h2>User</h2>
+                        <div class="result-user" id="result-user">0</div> 
+                    </div>
+                    <div class="div-button">
+                    <button class="button"><img src="./assets/rock.jpg" alt="Rock" class="play" id="rock"></button>
+                    <button class="button"><img src="./assets/paper.jpg" alt="Paper" class="play" id="paper"></button>
+                    <button class="button"><img src="./assets/scissors.jpg" alt="Scissors" class="play" id="scissors"></button>
+                    </div>
+                    <p id="p-selected-user"></p>
+                    <img src="" alt="" id="selected-user" class="selected-user"> 
+                </article>
+                <article class="card">
+                    <div class="ContainerResults">
+                        <h2>CPU</h2>
+                        <div class="result-cpu" id="result-cpu">0</div> 
+                    </div>
+                    <img src="./assets/rock.jpg" alt="Rock" class="playCpu">
+                    <img src="./assets/paper.jpg" alt="Paper" class="playCpu">
+                    <img src="./assets/scissors.jpg" alt="Scissors" class="playCpu">
+                    <p id="p-selected-cpu"></p>
+                    <img src="" alt="" id="selected-cpu" class="selected-cpu"> 
+                </article>
+            </div>
+        </div>
+    </section>
+    <footer>
+    </footer>
+    <script src="./app2.js"></script> <!-- Enlace al archivo app.js -->
+</body>
+</html>
