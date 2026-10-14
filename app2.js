@@ -1,7 +1,6 @@
 const btnRock = document.getElementById('rock');
 const btnPaper = document.getElementById('paper');
 const btnScissor = document.getElementById('scissors');
-const btnReload = document.getElementById('reload');
 const resultUser = document.getElementById('result-user');
 const resultCpu = document.getElementById('result-cpu');
 const selectedUser = document.getElementById('selected-user');
@@ -12,6 +11,7 @@ const PGanadorPartida = document.getElementById('ganador-partida');
 
 let userScore = 0;
 let cpuScore = 0;
+let gameOver = false;
 
 const choices = {
     rock: { name: 'Piedra', src: './assets/rock.jpg', beats: 'scissors' },
@@ -20,12 +20,13 @@ const choices = {
 };
 
 function userPlay(choice) {
-    if (userScore < 3 && cpuScore < 3) {
-        pSelectedUser.textContent = `Usuario seleccionó ${choices[choice].name}.`;
-        selectedUser.src = choices[choice].src;
-        const cpuChoice = getCpuChoice();
-        determineWinner(choice, cpuChoice);
+    if (gameOver || userScore >= 3 || cpuScore >= 3) {
+        return;
     }
+    pSelectedUser.textContent = `Usuario seleccionó ${choices[choice].name}.`;
+    selectedUser.src = choices[choice].src;
+    const cpuChoice = getCpuChoice();
+    determineWinner(choice, cpuChoice);
 }
 
 function getCpuChoice() {
@@ -52,13 +53,13 @@ function determineWinner(userChoice, cpuChoice) {
 }
 
 function checkForGameWinner() {
-    if (userScore === 3 || cpuScore === 3) {
-        const winner = userScore === 3 ? 'Usuario' : 'CPU';
+    if (userScore >= 3 || cpuScore >= 3) {
+        gameOver = true;
+        const winner = cpuScore > userScore ? 'CPU' : 'Usuario';
         disableButtons();
         Swal.fire({
             title: "¡Juego terminado!",
             text: `${winner} es el ganador!`,
-            
         }).then(() => {
             resetGame();
         });
@@ -68,6 +69,7 @@ function checkForGameWinner() {
 function resetGame() {
     userScore = 0;
     cpuScore = 0;
+    gameOver = false;
     resultUser.textContent = '0';
     resultCpu.textContent = '0';
     pSelectedUser.textContent = '';
@@ -93,22 +95,4 @@ function enableButtons() {
 btnRock.addEventListener('click', () => userPlay('rock'));
 btnPaper.addEventListener('click', () => userPlay('paper'));
 btnScissor.addEventListener('click', () => userPlay('scissors'));
-btnReload.addEventListener('click', resetGame);
 
-
-function disableButtons() {
-    btnRock.disabled = true;
-    btnPaper.disabled = true;
-    btnScissor.disabled = true;
-}
-
-function enableButtons() {
-    btnRock.disabled = false;
-    btnPaper.disabled = false;
-    btnScissor.disabled = false;
-}
-
-btnRock.addEventListener('click', () => userPlay('rock'));
-btnPaper.addEventListener('click', () => userPlay('paper'));
-btnScissor.addEventListener('click', () => userPlay('scissors'));
-btnReload.addEventListener('click', resetGame);
