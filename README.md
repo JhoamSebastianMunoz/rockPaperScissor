@@ -20,7 +20,17 @@ Abre `index.html` en un navegador (no requiere servidor ni dependencias; usa Swe
 | `index.html` | Estructura de la interfaz |
 | `style.css` | Estilos |
 | `app2.js` | Lógica del juego |
-| `assets/` | Imágenes de piedra, papel y tijeras |
+| `assets/` | Iconos de piedra, papel y tijeras |
+
+## Diseño
+
+Interfaz de duelo (usuario contra la CPU) con marcador "primero a 3".
+
+- **Paleta derivada de los iconos del juego:** tinta `#0E1A1F`, panel `#16262C`, giza `#F1EFE7`, usuario (verde azulado) `#0FA396`, CPU (rojo) `#D93A2B`, empate (lima) `#A6CE39`.
+- **Tipografía:** *Big Shoulders Display* (títulos, marcador y veredicto) + *Archivo* (texto de interfaz).
+- **Responsivo:** a partir de 780 px los esquinos se muestran en paralelo separados por el "vs"; por debajo se apilan en columna, con los botones de jugada al alcance del pulgar.
+- **Accesibilidad:** el veredicto se anuncia con `aria-live`, los botones de jugada tienen `aria-label` y foco visible; se respeta `prefers-reduced-motion`.
+- Cada ronda muestra además la frase de la regla ("La piedra aplasta las tijeras.") y la partida termina con un diálogo con el marcador final.
 
 ## Lógica del juego (`app2.js`)
 

@@ -1,55 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
+    <meta name="description" content="Piedra, papel o tijeras: tú contra la máquina, al mejor de cinco.">
+    <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./assets/play-station.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+NKo+Unjoined:wght@400;500&family=Roboto:wght@300&family=Sevillana&family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>    
-    <title>Piedra, Papel, Tijera</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Big+Shoulders+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Piedra, papel o tijeras</title>
 </head>
 <body>
-    <header>
-    </header>
-    <section>
-        <h1 class="h1">Rock, Paper, Scissors</h1>
-        <hr>
-        <button id="reload" class="Reload" onclick="location.reload()">Reload</button> 
-        <div><h2>Game Results</h2>
-            <div><p id="ganador-partida"></p></div>
-            <div class="Container">
-                <article class="card">
-                    <div class="ContainerResults">
-                        <h2>User</h2>
-                        <div class="result-user" id="result-user">0</div> 
-                    </div>
-                    <div class="div-button">
-                    <button class="button"><img src="./assets/rock.jpg" alt="Rock" class="play" id="rock"></button>
-                    <button class="button"><img src="./assets/paper.jpg" alt="Paper" class="play" id="paper"></button>
-                    <button class="button"><img src="./assets/scissors.jpg" alt="Scissors" class="play" id="scissors"></button>
-                    </div>
-                    <p id="p-selected-user"></p>
-                    <img src="" alt="" id="selected-user" class="selected-user"> 
-                </article>
-                <article class="card">
-                    <div class="ContainerResults">
-                        <h2>CPU</h2>
-                        <div class="result-cpu" id="result-cpu">0</div> 
-                    </div>
-                    <img src="./assets/rock.jpg" alt="Rock" class="playCpu">
-                    <img src="./assets/paper.jpg" alt="Paper" class="playCpu">
-                    <img src="./assets/scissors.jpg" alt="Scissors" class="playCpu">
-                    <p id="p-selected-cpu"></p>
-                    <img src="" alt="" id="selected-cpu" class="selected-cpu"> 
-                </article>
-            </div>
+    <header class="masthead">
+        <div>
+            <h1 class="masthead__title">Piedra, papel o tijeras</h1>
+            <p class="masthead__sub">Tú contra la máquina, al mejor de cinco</p>
         </div>
-    </section>
-    <footer>
+        <button id="reload" class="btn-reload" type="button">Reiniciar</button>
+    </header>
+
+    <main class="arena">
+        <div class="verdict" aria-live="polite">
+            <p id="ganador-partida" class="verdict__headline" data-outcome="idle">Elige tu jugada</p>
+            <p id="rule-detail" class="verdict__detail">La piedra aplasta las tijeras. Las tijeras cortan el papel. El papel cubre la piedra.</p>
+        </div>
+
+        <div class="match">
+            <section class="corner corner--user" aria-label="Tu esquina">
+                <h2 class="corner__name">Usuario</h2>
+                <p class="corner__points" id="result-user">0</p>
+                <div class="pips" id="pips-user" aria-hidden="true">
+                    <span class="pip"></span>
+                    <span class="pip"></span>
+                    <span class="pip"></span>
+                </div>
+                <div class="choices">
+                    <button class="choice" id="rock" type="button" aria-label="Elegir piedra">
+                        <img src="./assets/icon-piedra.png" alt="" width="211" height="212">
+                    </button>
+                    <button class="choice" id="paper" type="button" aria-label="Elegir papel">
+                        <img src="./assets/icon-papel.png" alt="" width="213" height="213">
+                    </button>
+                    <button class="choice" id="scissors" type="button" aria-label="Elegir tijeras">
+                        <img src="./assets/icon-tijera.png" alt="" width="205" height="212">
+                    </button>
+                </div>
+                <p id="p-selected-user" class="corner__note">Aún no has jugado.</p>
+                <div class="slot">
+                    <img id="selected-user" class="slot__img" alt="Tu jugada">
+                </div>
+            </section>
+
+            <div class="vs" aria-hidden="true"><span>vs</span></div>
+
+            <section class="corner corner--cpu" aria-label="Esquina de la CPU">
+                <h2 class="corner__name">CPU</h2>
+                <p class="corner__points" id="result-cpu">0</p>
+                <div class="pips" id="pips-cpu" aria-hidden="true">
+                    <span class="pip"></span>
+                    <span class="pip"></span>
+                    <span class="pip"></span>
+                </div>
+                <div class="slot">
+                    <img id="selected-cpu" class="slot__img" alt="Jugada de la CPU">
+                </div>
+                <p id="p-selected-cpu" class="corner__note">La CPU espera.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="rules">
+        <p>Gana quien primero alcance tres rondas. Los empates no suman puntos.</p>
     </footer>
-    <script src="./app2.js"></script> <!-- Enlace al archivo app.js -->
+
+    <script src="./app2.js"></script>
 </body>
 </html>
